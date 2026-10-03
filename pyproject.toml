@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rwa-plugin-xray-editor"
+version = "0.1.4"
+description = "Visual Xray config editor plugin for remnawave-admin (Plugin API v1) — port of VAQYBIN/Remnawave-Xray-UI-Editor"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE", "NOTICE.md"]
+authors = [{ name = "chudo-arky" }]
+requires-python = ">=3.11"
+keywords = ["remnawave", "remnawave-admin", "xray", "plugin"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Framework :: FastAPI",
+  "Operating System :: POSIX :: Linux",
+  "Topic :: System :: Networking",
+]
+
+[project.urls]
+Homepage = "https://github.com/chudo-arky/rwa-plugin-xray-editor"
+Issues = "https://github.com/chudo-arky/rwa-plugin-xray-editor/issues"
+Original = "https://github.com/VAQYBIN/Remnawave-Xray-UI-Editor"
+
+[project.entry-points."rwa.plugin"]
+xray_editor = "rwa_xray_editor:manifest"
+
+[tool.setuptools]
+packages = ["rwa_xray_editor"]
+
+[tool.setuptools.package-data]
+rwa_xray_editor = ["vendor/*"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "UP"]
+ignore = ["B008", "E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
